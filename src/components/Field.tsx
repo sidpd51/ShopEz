@@ -6,7 +6,7 @@ type fieldProps = {
     type: string,
     placeholder: string,
     required?: boolean,
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 const Field = ({ fieldname, label, type, placeholder, required = false, onChange }: fieldProps) => {
