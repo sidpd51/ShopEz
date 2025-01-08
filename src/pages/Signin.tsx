@@ -21,30 +21,32 @@ export function Signin() {
         console.log(data);
     }
     return (
-        <Card className="max-w-sm w-full">
-            <HeaderWithSubHeader header="Signin" subheader="Enter your account details" />
-            <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
-                <Field
-                    fieldname="email"
-                    label="Email"
-                    type="email"
-                    placeholder="john@gmail.com"
-                    registerField="email"
-                    register={register}
-                />
-                {(errors.email && <ErrorMessage message={errors.email?.message} />)}
-                <Field
-                    fieldname="password"
-                    label="Password"
-                    type="password"
-                    placeholder="your password"
-                    registerField="password"
-                    register={register}
-                />
-                {(errors.password && <ErrorMessage message={errors.password?.message} />)}
-                <RememberMe path="/signup" message="Create an account?" />
-                <Button type="submit">Signin</Button>
-            </form>
-        </Card>
+        <div className="flex items-center justify-center h-screen">
+            <Card className="max-w-sm w-full">
+                <HeaderWithSubHeader header="Signin" subheader="Enter your account details" />
+                <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
+                    <Field
+                        fieldname="email"
+                        label="Email"
+                        type="email"
+                        placeholder="john@gmail.com"
+                        registerField="email"
+                        register={register}
+                    />
+                    {(errors.email && <ErrorMessage message={errors.email?.message} />)}
+                    <Field
+                        fieldname="password"
+                        label="Password"
+                        type="password"
+                        placeholder="your password"
+                        registerField="password"
+                        register={register}
+                    />
+                    {(errors.password && <ErrorMessage message={errors.password?.message} />)}
+                    <RememberMe path="/signup" message="Create an account?" />
+                    <Button type="submit">Signin</Button>
+                </form>
+            </Card>
+        </div >
     );
 }
