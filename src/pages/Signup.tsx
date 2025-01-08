@@ -63,7 +63,7 @@ export function Signup() {
                     <Label htmlFor="remember">Remember me</Label>
                 </div> */}
                     <RememberMe path="/signin" message="Already have an account?" />
-                    <Button type="submit">Signup</Button>
+                    <Button color="blue" type="submit">Signup</Button>
                 </form>
             </Card>
         </div>
