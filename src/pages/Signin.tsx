@@ -1,21 +1,48 @@
 
 "use client";
 
-import { Button, Card, Checkbox, Label } from "flowbite-react";
-import Field from "../components/Field";
+import { Button, Card } from "flowbite-react";
 import HeaderWithSubHeader from "../components/HeaderWithSubHeader";
+import Field from "../components/Field";
+import { SigninForm, signinFormSchema } from "../validationSchemas/auth";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import ErrorMessage from "../components/ErrorMessage";
+import RememberMe from "../components/RememberMe";
 
 export function Signin() {
+
+    const { register, handleSubmit, formState: { errors } } = useForm<SigninForm>({
+        resolver: zodResolver(signinFormSchema),
+    });
+
+    const onSubmit: SubmitHandler<SigninForm> = (data) => {
+        console.log('form submitted')
+        console.log(data);
+    }
     return (
         <Card className="max-w-sm w-full">
-            <HeaderWithSubHeader header="Signin" />
-            <form className="flex flex-col gap-4">
-                <Field label="Email" fieldname="email" type="email" placeholder="your email" />
-                <Field label="Password" fieldname="password" type="password" placeholder="your password" />
-                <div className="flex items-center gap-2">
-                    <Checkbox id="remember" />
-                    <Label htmlFor="remember">Remember me</Label>
-                </div>
+            <HeaderWithSubHeader header="Signin" subheader="Enter your account details" />
+            <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
+                <Field
+                    fieldname="email"
+                    label="Email"
+                    type="email"
+                    placeholder="john@gmail.com"
+                    registerField="email"
+                    register={register}
+                />
+                {(errors.email && <ErrorMessage message={errors.email?.message} />)}
+                <Field
+                    fieldname="password"
+                    label="Password"
+                    type="password"
+                    placeholder="your password"
+                    registerField="password"
+                    register={register}
+                />
+                {(errors.password && <ErrorMessage message={errors.password?.message} />)}
+                <RememberMe path="/signup" message="Create an account?" />
                 <Button type="submit">Signin</Button>
             </form>
         </Card>
