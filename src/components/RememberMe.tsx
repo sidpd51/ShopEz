@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 
 type RememberMeProps = {
     path: string,
@@ -14,7 +15,7 @@ const RememberMe = ({ path, message }: RememberMeProps) => {
                 </div>
                 <label htmlFor="remember" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remember me</label>
             </div>
-            <a href={path} className="ms-auto text-sm text-blue-700 hover:underline dark:text-blue-500">{message}</a>
+            <Link to={path} className="ms-auto text-sm text-blue-700 hover:underline dark:text-blue-500">{message}</Link>
         </div>
     )
 }
