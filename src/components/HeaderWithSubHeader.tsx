@@ -1,7 +1,7 @@
 
 type HeaderWithSubHeaderProps = {
     header: string,
-    subheader: string
+    subheader?: string
 }
 
 const HeaderWithSubHeader = ({ header, subheader }: HeaderWithSubHeaderProps) => {
