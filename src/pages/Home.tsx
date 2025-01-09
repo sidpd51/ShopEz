@@ -4,9 +4,16 @@
 import 'flowbite';
 import { Link } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
+import { useNavigate } from 'react-router-dom';
+
 
 
 const Home = () => {
+  const navigate = useNavigate();
+  const handleLogout = ()=>{
+    localStorage.removeItem('token');
+    navigate('/signin');
+  }
   return (<>
     <nav className="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
       <div className="px-3 py-3 lg:px-5 lg:pl-3">
@@ -51,7 +58,7 @@ const Home = () => {
                     <Link to="" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Earnings</Link>
                   </li>
                   <li>
-                    <Link to="" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Sign out</Link>
+                    <Link to="" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem" onClick={handleLogout}>Sign out</Link>
                   </li>
                 </ul>
               </div>
