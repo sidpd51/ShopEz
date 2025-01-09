@@ -3,28 +3,41 @@ import { Signup } from "./pages/Signup";
 import { Signin } from "./pages/Signin";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
-
+import { AuthProvider } from "./components/AuthProvider";
+import { PrivateRoute } from "./components/PrivateRoute";
+import { PublicRoute } from "./components/PublicRoute";
 
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element:
+      <PrivateRoute>
+        <Home />
+      </PrivateRoute>,
     errorElement: <NotFound />
   },
   {
     path: "/signin",
-    element: <Signin />
+    element:
+      <PublicRoute>
+        <Signin />
+      </PublicRoute>
   },
   {
     path: "/signup",
-    element: <Signup />
+    element:
+      <PublicRoute>
+        <Signup />
+      </PublicRoute>
   }
 ]);
 
 export default function App() {
   return (
-    <RouterProvider router={router} />
+    <AuthProvider isSignedIn={true}>
+      <RouterProvider router={router} />
+    </AuthProvider>
   )
 }
 
